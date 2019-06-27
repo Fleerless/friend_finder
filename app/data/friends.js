@@ -29,4 +29,6 @@ var friends = [
         photo: "https://ultimatemotorcycling.com/wp-content/uploads/2018/11/2018-casey-stoner-and-ducati-part-ways.jpg",
         scores: [4,4,1,2,1,3,1,4,5,2]
     }
-]
+];
+
+module.exports = friends;

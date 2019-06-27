@@ -38,7 +38,7 @@
         <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
         <select class="chosen-select" id="q1" style="">
             <option value="" selected></option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected="selected">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -50,7 +50,7 @@
         <h4>Generally speaking, you rely more on your experience than your imagination.</h4>
         <select class="chosen-select" id="q2" style="">
             <option value=""></option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected="selected">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -62,7 +62,7 @@
         <h4>You find it easy to stay relaxed and focused even when there is some pressure.</h4>
         <select class="chosen-select" id="q3" style="">
             <option value=""></option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected="selected">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -75,7 +75,7 @@
         <h4>You rarely do something just out of sheer curiosity.</h4>
         <select class="chosen-select" id="q4" style="">
             <option value=""></option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected="selected">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -87,7 +87,7 @@
         <h4>People can rarely upset you.</h4>
         <select class="chosen-select" id="q5" style="">
             <option value=""></option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected="selected">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -99,7 +99,7 @@
         <h4>It is often difficult for you to relate to other people’s feelings.</h4>
         <select class="chosen-select" id="q6" style="">
             <option value=""></option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected="selected">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -111,7 +111,7 @@
         <h4>In a discussion, truth should be more important than people’s sensitivities.</h4>
         <select class="chosen-select" id="q7" style="">
             <option value=""></option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected="selected">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -123,7 +123,7 @@
         <h4>You rarely get carried away by fantasies and ideas.</h4>
         <select class="chosen-select" id="q8" style="">
             <option value=""></option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected="selected">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -136,7 +136,7 @@
             not.</h4>
         <select class="chosen-select" id="q9" style="">
             <option value=""></option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected="selected">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -148,7 +148,7 @@
         <h4>You feel more energetic after spending time with a group of people.</h4>
         <select class="chosen-select" id="q10" style="">
             <option value=""></option>
-            <option value="1">1 (Strongly Disagree)</option>
+            <option value="1" selected="selected">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -261,10 +261,15 @@
                         $("#q10").val()
                     ]
                 };
-                console.log("USER: ", userData)
+                console.log("USER: ", JSON.stringify(userData));
+                
 
                 // AJAX post the data to the friends API.
-                $.post("/api/friends", userData, function (data) {
+                // sendData(userData);
+                
+                $.post("/api/friends", userData, function(data) {
+                    console.log("POST FUNCTION")
+                    console.log("DATA: ", data);
 
                     // Grab the result from the AJAX post so that the best match's name and photo are displayed.
                     $("#match-name").text(data.name);
@@ -272,17 +277,25 @@
 
                     // Show the modal with the best match
                     $("#results-modal").modal("toggle");
-
                 });
-            } else {
+        } else {
                 alert("Please fill out all fields before submitting!");
             }
-        });
+});
+
+        function sendData(userData){
+            $.post("/api/friends", userData, function(data) {
+                    console.log("POST FUNCTION")
+                    console.log("DATA: ", data);
+
+                    // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+                    $("#match-name").text(data.name);
+                    $("#match-img").attr("src", data.photo);
+
+                    // Show the modal with the best match
+                    $("#results-modal").modal("toggle");
+                });
+            }
     </script>
-
-
-
-
 </body>
-
 </html>
