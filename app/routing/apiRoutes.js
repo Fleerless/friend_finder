@@ -1,5 +1,4 @@
 var friends = require('../data/friends');
-require("../data/calcScores");
 // TRYING A BODY PARSER TO GET CLIENT SIDE $.post TO WORK
 // app.use(express.json());
 // app.use(express.urlencoded({extended: false}));
@@ -12,19 +11,31 @@ module.exports = function(app){
 
 app.post("/api/friends", function(req, res){
     var newUser = req.body;
-    console.log("SERVER NEW USER: ", newUser);
     calcScores(newUser, friends)
     friends.push(newUser);
-    res.json({name: "name"})
+    res.json(friends[newFriend.index])
 })
 };
 
+var newFriend = {
+    score: 1000,
+    index: 0
+}
+
 function calcScores(newUser, friends){
-    var newFriend;
-    friends.forEach(element => {
+    friends.forEach((element, index) => {
+        var newFriendScore = 0;
+        var Findex = index
         element.scores.forEach((element, index) => {
-            console.log("NEW USER: ", newUser)
-            var indexScore = element[index] - newUser.scores[][index]
+            var newFriendMath;
+            var indexScore = element;
+            var userScore = parseInt(newUser.scores[index]);
+            newFriendMath = indexScore - userScore;
+            newFriendScore = newFriendScore + newFriendMath;
         })
+        if (Math.abs(newFriendScore) < newFriend.score){
+            newFriend.score = newFriendScore;
+            newFriend.index = Findex;
+        }
     });
 }

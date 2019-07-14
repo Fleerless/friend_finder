@@ -8,7 +8,7 @@ var PORT = 8080;
 // INIT MIDDLEWARE TRYING TO GET CLIENT SIDE $.post TO WORK
 // THIS DID NOT WORK
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 
 
 require('./app/routing/apiRoutes')(app);

@@ -186,7 +186,7 @@
                 </div>
                 <div class="modal-body">
                     <h2 id="match-name"></h2>
-                    <img id="match-img"
+                    <img id="match-img" style="width:400px"
                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIYAAABaCAMAAABKW973AAAAZlBMVEVpXM2HfdFnWs1dUM56bMv35rnQw77t37uGe9GCedK/r8eDdspbTs5xY8zx4rlgU87Yy76ejsdjVs7l176wocrNvcCjlMZtX82VhsjWxr766riAdtLEuMGqm8V8c9PWxMBYSs+0pcSOe2YhAAAA/0lEQVRoge3XwXLCIBSFYYSoDaUhohCTNDW+/0vKqNN2hPWBGc+3yPofbibhCkFEREREREREb0ZmwTOarAEbIc/TPqPzCprhDsf5I9GeegPP2CRiBv40Smc4Y2X5DBcmbcpnWD0OFQzFam8qGErMUKUznLIVZLiw+1blM0x/CVVkLKqCoZj+5J4ZP21iXuAZnc64gH5tvxmz3+UEB80QUr1a1/jAVPxlJOwVdBL/Mkx6CzVeW3DG2HwmmhGc4cI2CzyUeO15ta7xgat4ZCTc0mI3lPgxT98AaY8H4FHcM67iKyHQGcpvu4zpDF4bh/zSiI0Q1azQRERERERERFTYDYLRGu9f4hHxAAAAAElFTkSuQmCC" alt="">
                 </div>
                 <div class="modal-footer">
@@ -264,10 +264,8 @@
                 
 
                 // AJAX post the data to the friends API.
-                // sendData(userData);
                 
                 $.post("/api/friends", userData, function(data) {
-                    console.log("userData: ",userData)
                     console.log("DATA: ", data);
 
                     // Grab the result from the AJAX post so that the best match's name and photo are displayed.
@@ -282,19 +280,6 @@
             }
 });
 
-        function sendData(userData){
-            $.post("/api/friends", userData, function(data) {
-                    console.log("POST FUNCTION")
-                    console.log("DATA: ", data);
-
-                    // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-                    $("#match-name").text(data.name);
-                    $("#match-img").attr("src", data.photo);
-
-                    // Show the modal with the best match
-                    $("#results-modal").modal("toggle");
-                });
-            }
     </script>
 </body>
 </html>
