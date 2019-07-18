@@ -15,5 +15,8 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Fleerless/friend_finder/issues"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
