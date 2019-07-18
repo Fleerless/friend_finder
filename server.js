@@ -3,7 +3,7 @@ var path    = require('path');
 
 var app     = express();
 
-var PORT = 8080;
+var PORT = process.env.PORT || 8080;
 
 // INIT MIDDLEWARE TRYING TO GET CLIENT SIDE $.post TO WORK
 // THIS DID NOT WORK
